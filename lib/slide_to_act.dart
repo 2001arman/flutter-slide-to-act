@@ -234,35 +234,32 @@ class SlideActionState extends State<SlideAction>
                                 child: Padding(
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 8.0),
-                                  child: Material(
-                                    borderRadius: BorderRadius.circular(
-                                        widget.borderRadius),
-                                    child: Container(
-                                      padding: EdgeInsets.all(
-                                          widget.sliderButtonIconPadding),
-                                      decoration: BoxDecoration(
-                                        color: widget.innerColor ??
-                                            Theme.of(context)
-                                                .primaryIconTheme
-                                                .color,
-                                        gradient: widget.gradient,
-                                      ),
-                                      child: Transform.rotate(
-                                        angle: widget.sliderRotate
-                                            ? -pi * _progress
-                                            : 0,
-                                        child: Center(
-                                          child: widget.sliderButtonIcon ??
-                                              Icon(
-                                                Icons.arrow_forward,
-                                                size:
-                                                    widget.sliderButtonIconSize,
-                                                color: widget.outerColor ??
-                                                    Theme.of(context)
-                                                        .colorScheme
-                                                        .secondary,
-                                              ),
-                                        ),
+                                  child: Container(
+                                    padding: EdgeInsets.all(
+                                        widget.sliderButtonIconPadding),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(
+                                          widget.borderRadius),
+                                      color: widget.innerColor ??
+                                          Theme.of(context)
+                                              .primaryIconTheme
+                                              .color,
+                                      gradient: widget.gradient,
+                                    ),
+                                    child: Transform.rotate(
+                                      angle: widget.sliderRotate
+                                          ? -pi * _progress
+                                          : 0,
+                                      child: Center(
+                                        child: widget.sliderButtonIcon ??
+                                            Icon(
+                                              Icons.arrow_forward,
+                                              size: widget.sliderButtonIconSize,
+                                              color: widget.outerColor ??
+                                                  Theme.of(context)
+                                                      .colorScheme
+                                                      .secondary,
+                                            ),
                                       ),
                                     ),
                                   ),
