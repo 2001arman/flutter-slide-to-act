@@ -12,6 +12,9 @@ class SlideAction extends StatefulWidget {
   /// Tha padding of the sliding icon
   final double sliderButtonIconPadding;
 
+  /// Tha padding of the sliding icon
+  final EdgeInsets? sliderButtonMargin;
+
   /// The offset on the y axis of the slider icon
   final double sliderButtonYOffset;
 
@@ -103,6 +106,7 @@ class SlideAction extends StatefulWidget {
     this.sliderButtonIcon,
     this.trigger = 0.8,
     this.gradient,
+    this.sliderButtonMargin,
   })  : assert(0.1 <= trigger && trigger <= 1.0,
             'The value of `trigger` should be between 0.1 and 1.0'),
         super(key: key);
@@ -231,36 +235,32 @@ class SlideActionState extends State<SlideAction>
                                     await reset();
                                   }
                                 },
-                                child: Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0),
-                                  child: Container(
-                                    padding: EdgeInsets.all(
-                                        widget.sliderButtonIconPadding),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(
-                                          widget.borderRadius),
-                                      color: widget.innerColor ??
-                                          Theme.of(context)
-                                              .primaryIconTheme
-                                              .color,
-                                      gradient: widget.gradient,
-                                    ),
-                                    child: Transform.rotate(
-                                      angle: widget.sliderRotate
-                                          ? -pi * _progress
-                                          : 0,
-                                      child: Center(
-                                        child: widget.sliderButtonIcon ??
-                                            Icon(
-                                              Icons.arrow_forward,
-                                              size: widget.sliderButtonIconSize,
-                                              color: widget.outerColor ??
-                                                  Theme.of(context)
-                                                      .colorScheme
-                                                      .secondary,
-                                            ),
-                                      ),
+                                child: Container(
+                                  margin: widget.sliderButtonMargin,
+                                  padding: EdgeInsets.all(
+                                      widget.sliderButtonIconPadding),
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    color: widget.innerColor ??
+                                        Theme.of(context)
+                                            .primaryIconTheme
+                                            .color,
+                                    gradient: widget.gradient,
+                                  ),
+                                  child: Transform.rotate(
+                                    angle: widget.sliderRotate
+                                        ? -pi * _progress
+                                        : 0,
+                                    child: Center(
+                                      child: widget.sliderButtonIcon ??
+                                          Icon(
+                                            Icons.arrow_forward,
+                                            size: widget.sliderButtonIconSize,
+                                            color: widget.outerColor ??
+                                                Theme.of(context)
+                                                    .colorScheme
+                                                    .secondary,
+                                          ),
                                     ),
                                   ),
                                 ),
