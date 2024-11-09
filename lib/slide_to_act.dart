@@ -12,8 +12,14 @@ class SlideAction extends StatefulWidget {
   /// Tha padding of the sliding icon
   final double sliderButtonIconPadding;
 
-  /// Tha padding of the sliding icon
+  /// Tha margin of the sliding icon
   final EdgeInsets? sliderButtonMargin;
+
+  /// Tha padding of the container
+  final EdgeInsets? paddingContainer;
+
+  /// The offset on the y axis of the slider icon
+  final double? sizeButtonIcon;
 
   /// The offset on the y axis of the slider icon
   final double sliderButtonYOffset;
@@ -107,6 +113,8 @@ class SlideAction extends StatefulWidget {
     this.trigger = 0.8,
     this.gradient,
     this.sliderButtonMargin,
+    this.paddingContainer,
+    this.sizeButtonIcon,
   })  : assert(0.1 <= trigger && trigger <= 1.0,
             'The value of `trigger` should be between 0.1 and 1.0'),
         super(key: key);
@@ -143,6 +151,7 @@ class SlideActionState extends State<SlideAction>
           key: _containerKey,
           height: widget.height,
           width: _containerWidth,
+          padding: widget.paddingContainer,
           constraints: _containerWidth != null
               ? null
               : BoxConstraints.expand(height: widget.height),
@@ -237,6 +246,8 @@ class SlideActionState extends State<SlideAction>
                                 },
                                 child: Container(
                                   margin: widget.sliderButtonMargin,
+                                  width: widget.sizeButtonIcon,
+                                  height: widget.sizeButtonIcon,
                                   padding: EdgeInsets.all(
                                       widget.sliderButtonIconPadding),
                                   decoration: BoxDecoration(
